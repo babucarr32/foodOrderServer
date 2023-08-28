@@ -1,5 +1,6 @@
 export const typeDefs = `#graphql
 type LoggedInUser{
+    id: ID
     username: String
     currentChoice: String
     favorites: [FavFood]
