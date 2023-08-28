@@ -1,4 +1,11 @@
+// import { ApolloServer } from "@apollo/server";
+// import { startStandaloneServer } from "@apollo/server/standalone";
+// import { typeDefs } from "./graphql/typedefs";
+// import { resolvers } from "./graphql/resolvers";
+// import { connectDB } from "../utils/connectDB.js";
+// import cookieParser from "cookie-parser";
 import express, { Request, Response } from "express";
+// import { data } from "../utils/db.js";
 
 const app = express();
 
