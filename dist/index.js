@@ -3,8 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// import { ApolloServer } from "@apollo/server";
-// import { startStandaloneServer } from "@apollo/server/standalone";
 // import { typeDefs } from "./graphql/typedefs";
 // import { resolvers } from "./graphql/resolvers";
 // import { connectDB } from "../utils/connectDB.js";
