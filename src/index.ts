@@ -1,18 +1,18 @@
-import { ApolloServer } from "@apollo/server";
-import { startStandaloneServer } from "@apollo/server/standalone";
+// import { ApolloServer } from "@apollo/server";
+// import { startStandaloneServer } from "@apollo/server/standalone";
 // import { typeDefs } from "./graphql/typedefs";
 // import { resolvers } from "./graphql/resolvers";
-import { connectDB } from "../utils/connectDB.js";
+// import { connectDB } from "../utils/connectDB.js";
 import cookieParser from "cookie-parser";
-import express from "express";
+import express, { Request, Response } from "express";
 import { data } from "../utils/db.js";
 
 const app = express();
-app.use(cookieParser());
+// app.use(cookieParser());
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
