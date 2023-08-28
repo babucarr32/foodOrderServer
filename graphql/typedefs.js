@@ -43,9 +43,8 @@ input RemoveFromFavorites{
     food_id: ID
 }
 
-input OrderedFoods{
-    foodName: String
-    username: String
+input MakeOrder{
+    food_name: String
     user_id: String 
 }
 
@@ -63,6 +62,6 @@ type Mutation{
     addToFavorites(info: AddToFavorites): User
     removeFromFavorites(info: RemoveFromFavorites): User
     addFood(foodName: String):AvailableFoods
-    makeOrder(info: OrderedFoods): Orders
+    makeOrder(info: MakeOrder): User
 }
 `;

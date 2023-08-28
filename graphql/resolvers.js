@@ -1,7 +1,6 @@
 import Food from "../model/Food.js";
 import Order from "../model/Orders.js";
 import User from "../model/User.js";
-import { data } from "../utils/db.js";
 
 export const resolvers = {
   Query: {
@@ -18,7 +17,7 @@ export const resolvers = {
     },
 
     async orders() {
-      return data.orderedFoods;
+      return await User.find();
     },
   },
 
@@ -68,10 +67,11 @@ export const resolvers = {
     },
 
     async makeOrder(_, { info }) {
-      const order = new Order({
-        ...info,
-      });
-      return await order.save();
+      const result = await User.findOneAndUpdate(
+        { _id: info.user_id },
+        { currentChoice: info.food_name }
+      );
+      return result;
     },
   },
 };
