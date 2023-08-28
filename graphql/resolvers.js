@@ -13,7 +13,7 @@ export const resolvers = {
     },
 
     async foods() {
-      return data.availableFoods;
+      return await Food.find();
     },
 
     async orderFoods() {
@@ -35,6 +35,18 @@ export const resolvers = {
       });
       return await food.save();
     },
-    async addToFavorites(_, { info }) {},
+    async addToFavorites(_, { info }) {
+      console.log(info);
+      return await User.findOneAndUpdate(
+        {
+          _id: info.user_id,
+        },
+        {
+          $addToSet: {
+            favorites: { food_id: info.food_id, foodName: info.food_name },
+          },
+        }
+      );
+    },
   },
 };

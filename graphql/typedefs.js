@@ -4,8 +4,14 @@ type User{
     username: String
     password: String
     currentChoice: String
-    favorite: [String]
+    favorites: [FavFood]
 }
+
+type FavFood{
+    food_id: String 
+    foodName:  String 
+},
+    
 
 type availableFoods{
     id: ID
@@ -27,6 +33,7 @@ input CreateAccount{
 input AddToFavorites{
     user_id: ID
     food_id: ID
+    food_name: String
 }
 
 type Query{

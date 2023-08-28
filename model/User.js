@@ -8,7 +8,15 @@ const userSchema = new mongoose.Schema({
     minlength: 8,
     required: true,
   },
-  favorites: { type: [], default: [] },
+  favorites: {
+    type: [
+      {
+        food_id: { type: String },
+        foodName: { type: String },
+      },
+    ],
+    default: [],
+  },
   currentChoice: { type: String, default: "" },
 });
 
