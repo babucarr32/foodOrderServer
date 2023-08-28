@@ -1,9 +1,13 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
+import cors from "cors";
+import { expressMiddleware } from "@apollo/server/express4";
 // import { typeDefs } from "./graphql/typedefs";
 // import { resolvers } from "./graphql/resolvers";
 import { connectDB } from "../utils/connectDB.js";
 import cookieParser from "cookie-parser";
+import pkg from "body-parser";
+const { json } = pkg;
 import express from "express";
 import { data } from "../utils/db.js";
 
@@ -40,6 +44,7 @@ async function startApolloServer() {
     typeDefs,
     resolvers,
   });
+
   const { url } = await startStandaloneServer(server, {
     context: async ({ req, res }) => ({ req, res }),
     listen: { port: port },
@@ -48,5 +53,9 @@ async function startApolloServer() {
     🚀  Server is running!
     📭  Query at ${url}
     `);
+  app.use("/graphql", cors(), json(), expressMiddleware(server));
 }
+
+// Specify the path where we'd like to mount our server
+
 startApolloServer();
