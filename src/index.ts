@@ -11,3 +11,42 @@ app.get("/", (req: Request, res: Response) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+//   await connectDB();
+// }
+// // connectToDatabase();
+
+// const typeDefs = `#graphql
+// type User{
+//     username: String
+//     password: String
+// }
+
+// type Query{
+//     user: [User]
+// }
+// `;
+
+// const resolvers = {
+//   Query: {
+//     async user() {
+//       return data.users;
+//     },
+//   },
+// };
+
+// async function startApolloServer() {
+//   const server = new ApolloServer({
+//     typeDefs,
+//     resolvers,
+//   });
+//   const { url } = await startStandaloneServer(server, {
+//     context: async ({ req, res }) => ({ req, res }),
+//     listen: { port: 4000 },
+//   });
+//   console.log(`
+//     🚀  Server is running!
+//     📭  Query at ${url}
+//     `);
+// }
+// // startApolloServer();
