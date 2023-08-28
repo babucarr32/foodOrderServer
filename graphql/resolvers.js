@@ -1,4 +1,5 @@
 import Food from "../model/Food.js";
+import Order from "../model/Orders.js";
 import User from "../model/User.js";
 import { data } from "../utils/db.js";
 
@@ -16,7 +17,7 @@ export const resolvers = {
       return await Food.find();
     },
 
-    async orderFoods() {
+    async orders() {
       return data.orderedFoods;
     },
   },
@@ -64,6 +65,13 @@ export const resolvers = {
         }
       );
       return result;
+    },
+
+    async makeOrder(_, { info }) {
+      const order = new Order({
+        ...info,
+      });
+      return await order.save();
     },
   },
 };

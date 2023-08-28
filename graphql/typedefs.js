@@ -13,16 +13,18 @@ type FavFood{
 },
     
 
-type availableFoods{
+type AvailableFoods{
     id: ID
     name: String
 }
 
-type OrderFoods{
-    id: ID
-    fooName: String
+type Orders{
+    id: String
+    foodName: String
     username: String
+    user_id: String 
 }
+
 
 input CreateAccount{
     username: String
@@ -41,11 +43,17 @@ input RemoveFromFavorites{
     food_id: ID
 }
 
+input OrderedFoods{
+    foodName: String
+    username: String
+    user_id: String 
+}
+
 type Query{
     user(ID: String): User!
     users: [User]
-    orderFoods: [OrderFoods]
-    foods: [availableFoods]
+    orders: [Orders]
+    foods: [AvailableFoods]
 }
 
 type Mutation{
@@ -54,6 +62,7 @@ type Mutation{
     deleteAccount(ID: ID): Boolean
     addToFavorites(info: AddToFavorites): User
     removeFromFavorites(info: RemoveFromFavorites): User
-    addFood(foodName: String):availableFoods
+    addFood(foodName: String):AvailableFoods
+    makeOrder(info: OrderedFoods): Orders
 }
 `;
