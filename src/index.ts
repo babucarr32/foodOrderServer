@@ -19,10 +19,10 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-// async function connectToDatabase() {
-//   await connectDB();
-// }
-// connectToDatabase();
+async function connectToDatabase() {
+  await connectDB();
+}
+connectToDatabase();
 
 // const typeDefs = `#graphql
 // type User{
