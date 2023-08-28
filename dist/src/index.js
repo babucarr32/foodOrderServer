@@ -3,9 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// import { typeDefs } from "./graphql/typedefs";
-// import { resolvers } from "./graphql/resolvers";
-// import { connectDB } from "../utils/connectDB";
 // import cookieParser from "cookie-parser";
 const express_1 = __importDefault(require("express"));
 // import { data } from "../utils/db.js";
