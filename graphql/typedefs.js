@@ -36,6 +36,11 @@ input AddToFavorites{
     food_name: String
 }
 
+input RemoveFromFavorites{
+    user_id: ID
+    food_id: ID
+}
+
 type Query{
     user(ID: String): User!
     users: [User]
@@ -48,7 +53,7 @@ type Mutation{
     editAccount(credentials: CreateAccount): User
     deleteAccount(ID: ID): Boolean
     addToFavorites(info: AddToFavorites): User
-    removeFromFavorites(info: AddToFavorites): User
+    removeFromFavorites(info: RemoveFromFavorites): User
     addFood(foodName: String):availableFoods
 }
 `;

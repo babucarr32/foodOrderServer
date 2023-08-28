@@ -35,9 +35,10 @@ export const resolvers = {
       });
       return await food.save();
     },
+
     async addToFavorites(_, { info }) {
       console.log(info);
-      return await User.findOneAndUpdate(
+      const result = await User.findOneAndUpdate(
         {
           _id: info.user_id,
         },
@@ -47,6 +48,22 @@ export const resolvers = {
           },
         }
       );
+
+      return result;
+    },
+
+    async removeFromFavorites(_, { info }) {
+      const result = await User.findOneAndUpdate(
+        {
+          _id: info.user_id,
+        },
+        {
+          $pull: {
+            favorites: { food_id: info.food_id },
+          },
+        }
+      );
+      return result;
     },
   },
 };
