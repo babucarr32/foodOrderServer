@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const foodSchema = new mongoose.Schema({
-  password: { type: String },
+  name: { type: String },
 });
 
 let Food;

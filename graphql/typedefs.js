@@ -18,10 +18,11 @@ type OrderFoods{
     username: String
 }
 
-input createAccount{
+input CreateAccount{
     username: String
     password: String
 }
+
 
 input AddToFavorites{
     user_id: ID
@@ -36,10 +37,11 @@ type Query{
 }
 
 type Mutation{
-    createAccount(credentials: createAccount): User
-    editAccount(credentials: createAccount): User
+    createAccount(credentials: CreateAccount): User
+    editAccount(credentials: CreateAccount): User
     deleteAccount(ID: ID): Boolean
     addToFavorites(info: AddToFavorites): User
     removeFromFavorites(info: AddToFavorites): User
+    addFood(foodName: String):availableFoods
 }
 `;
