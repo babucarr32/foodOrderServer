@@ -1,6 +1,7 @@
+import { handleGenerateToken } from "../actions/generateToken.js";
 import Food from "../model/Food.js";
-import Order from "../model/Orders.js";
 import User from "../model/User.js";
+import bcrypt from "bcryptjs";
 
 export const resolvers = {
   Query: {
@@ -57,6 +58,21 @@ export const resolvers = {
       } catch (error) {
         return false;
       }
+    },
+
+    async login(_, { credentials }) {
+      const result = await User.findOne({ username: credentials.username });
+      if (result) {
+        const isPasswordMatch = await bcrypt.compare(
+          credentials.password,
+          result.password
+        );
+        if (isPasswordMatch) {
+          const accessToken = handleGenerateToken(result.username);
+          return { id: result._id, ...result._doc, accessToken };
+        }
+      }
+      throw new Error("Username or password incorrect");
     },
 
     async createAccount(_, { credentials }) {

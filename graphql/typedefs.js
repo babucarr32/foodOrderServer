@@ -1,4 +1,11 @@
 export const typeDefs = `#graphql
+type LoggedInUser{
+    username: String
+    currentChoice: String
+    favorites: [FavFood]
+    accessToken: String
+}
+
 type User{
     id: ID
     username: String
@@ -25,6 +32,10 @@ type Orders{
     user_id: String 
 }
 
+input Login{
+    username: String
+    password: String
+}
 
 input CreateAccount{
     username: String
@@ -65,6 +76,7 @@ type Mutation{
     createAccount(credentials: CreateAccount): User
     editAccount(credentials: EditAccount): User
     deleteAccount(ID: ID): Boolean
+    login(credentials: Login):LoggedInUser
     addToFavorites(info: AddToFavorites): User
     removeFromFavorites(info: RemoveFromFavorites): User
     addFood(foodName: String):AvailableFoods
