@@ -47,9 +47,18 @@ export const resolvers = {
         { _id: credentials.user_id },
         { ...credentials }
       );
-
       return result;
     },
+
+    async deleteAccount(_, { ID }) {
+      try {
+        await User.findByIdAndDelete(ID);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    },
+
     async createAccount(_, { credentials }) {
       const user = new User({
         ...credentials,
@@ -67,24 +76,19 @@ export const resolvers = {
     async addToFavorites(_, { info }) {
       console.log(info);
       const result = await User.findOneAndUpdate(
-        {
-          _id: info.user_id,
-        },
+        { _id: info.user_id },
         {
           $addToSet: {
             favorites: { food_id: info.food_id, foodName: info.food_name },
           },
         }
       );
-
       return result;
     },
 
     async removeFromFavorites(_, { info }) {
       const result = await User.findOneAndUpdate(
-        {
-          _id: info.user_id,
-        },
+        { _id: info.user_id },
         {
           $pull: {
             favorites: { food_id: info.food_id },
