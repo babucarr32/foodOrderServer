@@ -10,10 +10,20 @@ import { data } from "../utils/db";
 const app = express();
 app.use(cookieParser());
 
+const port = 3000;
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
+
 async function connectToDatabase() {
   await connectDB();
 }
-connectToDatabase();
+// connectToDatabase();
 
 const typeDefs = `#graphql 
 type User{
@@ -48,4 +58,4 @@ async function startApolloServer() {
     📭  Query at ${url}
     `);
 }
-startApolloServer();
+// startApolloServer();
