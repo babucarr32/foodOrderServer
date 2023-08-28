@@ -2,7 +2,7 @@ import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 // import { typeDefs } from "./graphql/typedefs";
 // import { resolvers } from "./graphql/resolvers";
-// import { connectDB } from "../utils/connectDB.js";
+import { connectDB } from "../utils/connectDB";
 // import cookieParser from "cookie-parser";
 import express, { Request, Response } from "express";
 // import { data } from "../utils/db.js";
@@ -19,9 +19,10 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-//   await connectDB();
-// }
-// // connectToDatabase();
+async function connectToDatabase() {
+  await connectDB();
+}
+connectToDatabase();
 
 // const typeDefs = `#graphql
 // type User{
