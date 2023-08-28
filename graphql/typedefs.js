@@ -31,6 +31,12 @@ input CreateAccount{
     password: String
 }
 
+input EditAccount{
+    user_id: String
+    username: String
+    password: String
+}
+
 
 input AddToFavorites{
     user_id: ID
@@ -57,7 +63,7 @@ type Query{
 
 type Mutation{
     createAccount(credentials: CreateAccount): User
-    editAccount(credentials: CreateAccount): User
+    editAccount(credentials: EditAccount): User
     deleteAccount(ID: ID): Boolean
     addToFavorites(info: AddToFavorites): User
     removeFromFavorites(info: RemoveFromFavorites): User

@@ -42,6 +42,14 @@ export const resolvers = {
   },
 
   Mutation: {
+    async editAccount(_, { credentials }) {
+      const result = await User.findOneAndUpdate(
+        { _id: credentials.user_id },
+        { ...credentials }
+      );
+
+      return result;
+    },
     async createAccount(_, { credentials }) {
       const user = new User({
         ...credentials,
