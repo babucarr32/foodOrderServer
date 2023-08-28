@@ -51,7 +51,7 @@ input MakeOrder{
 type Query{
     user(ID: String): User!
     users: [User]
-    orders: [Orders]
+    orders: [String]
     foods: [AvailableFoods]
 }
 
