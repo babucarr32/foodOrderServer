@@ -90,7 +90,6 @@ export const resolvers = {
     },
 
     async addToFavorites(_, { info }) {
-      console.log(info);
       const result = await User.findOneAndUpdate(
         { _id: info.user_id },
         {
