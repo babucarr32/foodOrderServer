@@ -96,7 +96,8 @@ export const resolvers = {
           $addToSet: {
             favorites: { foodName: info.food_name },
           },
-        }
+        },
+        { new: true }
       );
       return result;
     },
@@ -108,7 +109,8 @@ export const resolvers = {
           $pull: {
             favorites: { _id: info.food_id },
           },
-        }
+        },
+        { new: true }
       );
       return result;
     },
