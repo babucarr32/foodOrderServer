@@ -11,7 +11,6 @@ const userSchema = new mongoose.Schema({
   favorites: {
     type: [
       {
-        food_id: { type: String },
         foodName: { type: String },
       },
     ],

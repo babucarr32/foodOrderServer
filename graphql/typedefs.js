@@ -16,6 +16,7 @@ type User{
 }
 
 type FavFood{
+    id: ID
     food_id: String 
     foodName:  String 
 },
@@ -52,7 +53,6 @@ input EditAccount{
 
 input AddToFavorites{
     user_id: ID
-    food_id: ID
     food_name: String
 }
 

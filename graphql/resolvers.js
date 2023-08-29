@@ -95,7 +95,7 @@ export const resolvers = {
         { _id: info.user_id },
         {
           $addToSet: {
-            favorites: { food_id: info.food_id, foodName: info.food_name },
+            favorites: { foodName: info.food_name },
           },
         }
       );
@@ -107,7 +107,7 @@ export const resolvers = {
         { _id: info.user_id },
         {
           $pull: {
-            favorites: { food_id: info.food_id },
+            favorites: { _id: info.food_id },
           },
         }
       );
