@@ -9,7 +9,8 @@ export const handleVerifyToken = (token) => {
         process.env.AccessToken,
         function (err, decoded) {
           if (decoded) {
-            return decoded.data._id;
+            console.log(decoded.data);
+            return decoded.data;
           }
         }
       );
