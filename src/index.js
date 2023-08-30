@@ -3,15 +3,9 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "../graphql/typedefs.js";
 import { resolvers } from "../graphql/resolvers.js";
 import { connectDB } from "../utils/connectDB.js";
-import cookieParser from "cookie-parser";
-import express from "express";
-import twilio from "twilio";
-
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = twilio(accountSid, authToken);
-
-const app = express();
+import { MessageSender } from "../utils/MessageSender.js";
+import { getOrders } from "../utils/getOrders.js";
+import { twilioMessage } from "../utils/TwillioMsg.js";
 
 const port = process.env.PORT || 8080;
 
@@ -20,16 +14,7 @@ async function connectToDatabase() {
 }
 connectToDatabase();
 
-function TwilioMessage() {
-  client.messages
-    .create({
-      body: "This is the ship that made the Kessel Run in fourteen parsecs?",
-      from: "+17076201489",
-      to: "+2203626260",
-    })
-    .then((message) => console.log(message.sid));
-}
-TwilioMessage();
+MessageSender(() => getOrders());
 
 async function startApolloServer() {
   const server = new ApolloServer({
