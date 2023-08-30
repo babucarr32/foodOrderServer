@@ -31,12 +31,13 @@ export const resolvers = {
         } else {
           const randomRes = getRandomFood(user.favorites);
           if (randomRes) {
-            orders.push(randomRes);
+            orders.push(randomRes.foodName);
           } else {
             orders.push("Domoda");
           }
         }
       });
+
       await User.updateMany({}, { $set: { currentChoice: "" } });
       return orders;
     },
@@ -118,7 +119,8 @@ export const resolvers = {
     async makeOrder(_, { info }) {
       const result = await User.findOneAndUpdate(
         { _id: info.user_id },
-        { currentChoice: info.food_name }
+        { currentChoice: info.food_name },
+        { new: true }
       );
       return result;
     },
