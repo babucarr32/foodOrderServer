@@ -63,7 +63,7 @@ export const resolvers = {
       const result = await user.save();
 
       if (result) {
-        const accessToken = handleGenerateToken(result.username);
+        const accessToken = handleGenerateToken(result._id);
         return { id: result._id, ...result._doc, accessToken };
       }
     },
