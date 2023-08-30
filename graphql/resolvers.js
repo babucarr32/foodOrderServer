@@ -59,7 +59,12 @@ export const resolvers = {
       const user = new User({
         ...credentials,
       });
-      return await user.save();
+      const result = await user.save();
+
+      if (result) {
+        const accessToken = handleGenerateToken(result.username);
+        return { id: result._id, ...result._doc, accessToken };
+      }
     },
 
     async addFood(_, { foodName }) {

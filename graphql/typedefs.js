@@ -75,7 +75,7 @@ type Query{
 }
 
 type Mutation{
-    createAccount(credentials: CreateAccount): User
+    createAccount(credentials: CreateAccount): LoggedInUser
     editAccount(credentials: EditAccount): User
     deleteAccount(ID: ID): Boolean
     login(credentials: Login):LoggedInUser
