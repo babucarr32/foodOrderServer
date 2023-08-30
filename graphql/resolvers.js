@@ -107,7 +107,7 @@ export const resolvers = {
         { _id: info.user_id },
         {
           $pull: {
-            favorites: { _id: info.food_id },
+            favorites: { foodName: info.food_name },
           },
         },
         { new: true }

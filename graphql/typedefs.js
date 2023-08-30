@@ -58,7 +58,8 @@ input AddToFavorites{
 
 input RemoveFromFavorites{
     user_id: ID
-    food_id: ID
+    food_name: ID
+
 }
 
 input MakeOrder{
