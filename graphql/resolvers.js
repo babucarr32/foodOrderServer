@@ -25,11 +25,36 @@ export const resolvers = {
 
   Mutation: {
     async editAccount(_, { credentials }) {
-      const result = await User.findOneAndUpdate(
-        { _id: credentials.user_id },
-        { ...credentials }
-      );
-      return result;
+      if (
+        !credentials.newPassword &&
+        !credentials.currentPassword &&
+        credentials.username
+      ) {
+        const result = await User.findOneAndUpdate(
+          { _id: credentials.user_id },
+          { username: credentials.username }
+        );
+        return result;
+      } else {
+        const result = await User.findById({ _id: credentials.user_id });
+
+        const isPasswordMatch = await bcrypt.compare(
+          credentials.currentPassword,
+          result.password
+        );
+
+        if (isPasswordMatch) {
+          const result = await User.findOneAndUpdate(
+            { _id: credentials.user_id },
+            {
+              username: credentials.username,
+              password: credentials.newPassword,
+            }
+          );
+          return result;
+        }
+        return null;
+      }
     },
 
     async deleteAccount(_, { ID }) {

@@ -47,7 +47,9 @@ input CreateAccount{
 input EditAccount{
     user_id: String
     username: String
-    password: String
+    currentPassword: String
+    newPassword: String
+
 }
 
 
