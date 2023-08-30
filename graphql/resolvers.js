@@ -53,7 +53,7 @@ export const resolvers = {
           return { id: result._id, ...result._doc, accessToken };
         }
       }
-      throw new Error("Username or password incorrect");
+      return null;
     },
 
     async createAccount(_, { credentials }) {

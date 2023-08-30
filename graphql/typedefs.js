@@ -74,6 +74,8 @@ type Query{
     foods: [AvailableFoods]
 }
 
+
+
 type Mutation{
     createAccount(credentials: CreateAccount): LoggedInUser
     editAccount(credentials: EditAccount): User
