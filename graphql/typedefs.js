@@ -83,5 +83,6 @@ type Mutation{
     removeFromFavorites(info: RemoveFromFavorites): User
     addFood(foodName: String):AvailableFoods
     makeOrder(info: MakeOrder): User
+    verifyJWTToken(token: String): Boolean
 }
 `;

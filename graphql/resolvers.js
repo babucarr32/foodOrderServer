@@ -2,6 +2,7 @@ import { handleGenerateToken } from "../actions/generateToken.js";
 import Food from "../model/Food.js";
 import User from "../model/User.js";
 import bcrypt from "bcryptjs";
+import { handleVerifyToken } from "../utils/VerifyToken.js";
 
 export const resolvers = {
   Query: {
@@ -107,6 +108,10 @@ export const resolvers = {
         { new: true }
       );
       return result;
+    },
+
+    async verifyJWTToken(_, { token }) {
+      return handleVerifyToken(token);
     },
   },
 };
