@@ -49,7 +49,7 @@ export const resolvers = {
           result.password
         );
         if (isPasswordMatch) {
-          const accessToken = handleGenerateToken(result.username);
+          const accessToken = handleGenerateToken(result._id);
           return { id: result._id, ...result._doc, accessToken };
         }
       }
