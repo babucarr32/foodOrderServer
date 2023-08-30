@@ -21,7 +21,8 @@
     "graphql": "^16.8.0",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.5",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "twilio": "^4.16.0"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.3",
