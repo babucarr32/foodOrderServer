@@ -53,7 +53,8 @@ export const resolvers = {
             {
               username: credentials.username,
               password: credentials.newPassword,
-            }
+            },
+            { new: true }
           );
           return result;
         }
