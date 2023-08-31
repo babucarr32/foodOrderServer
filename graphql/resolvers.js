@@ -32,7 +32,8 @@ export const resolvers = {
       ) {
         const result = await User.findOneAndUpdate(
           { _id: credentials.user_id },
-          { username: credentials.username }
+          { username: credentials.username },
+          { new: true }
         );
         return result;
       } else {
