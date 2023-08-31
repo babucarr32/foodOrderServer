@@ -88,9 +88,7 @@ export const resolvers = {
     },
 
     async createAccount(_, { credentials }) {
-      const user = new User({
-        ...credentials,
-      });
+      const user = new User({ ...credentials });
       const result = await user.save();
 
       if (result) {
@@ -100,9 +98,7 @@ export const resolvers = {
     },
 
     async addFood(_, { foodName }) {
-      const food = new Food({
-        name: foodName,
-      });
+      const food = new Food({ name: foodName });
       return await food.save();
     },
 
