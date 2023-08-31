@@ -36,14 +36,18 @@ export const resolvers = {
         );
         return result;
       } else {
-        const result = await User.findById({ _id: credentials.user_id });
-
+        const result = await User.findById(credentials.user_id);
         const isPasswordMatch = await bcrypt.compare(
           credentials.currentPassword,
           result.password
         );
 
         if (isPasswordMatch) {
+          credentials.newPassword = await bcrypt.hash(
+            credentials.newPassword,
+            8
+          );
+
           const result = await User.findOneAndUpdate(
             { _id: credentials.user_id },
             {
