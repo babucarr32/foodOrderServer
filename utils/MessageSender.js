@@ -1,31 +1,29 @@
 export function MessageSender(callback) {
-  const now = new Date(); // Current time in UTC
   const targetTime = new Date(); // Target time in UTC
-  targetTime.setUTCHours(13, 30, 0, 0); // Set target time to 9:05 AM
+  targetTime.setUTCHours(14, 0, 0, 0); // Set target time to 9:24 AM
 
-  // Check if the current day is Sunday (0 is Sunday, 1 is Monday, and so on)
-  if (now.getUTCDay() !== 0) {
-    const timeDifference = targetTime - now;
+  const now = new Date(); // Current time in UTC
 
-    if (timeDifference > 0) {
-      setTimeout(() => {
-        // Call your function here
-        callback();
-        console.log("Function executed!");
-        // Reschedule for the next day
-        MessageSender(callback);
-      }, timeDifference);
-    }
-    // No need to reschedule if the time has already passed for the day
-  } else {
-    // If it's Sunday, reschedule for the next day (Monday)
-    const nextDay = new Date(now);
-    nextDay.setUTCDate(now.getUTCDate() + 1);
-    nextDay.setUTCHours(0, 0, 0, 0);
-    const timeDifference = nextDay - now;
-
-    setTimeout(() => {
-      MessageSender(callback);
-    }, timeDifference);
+  // Check if the current time is after the target time for today
+  if (
+    now.getUTCHours() > targetTime.getUTCHours() ||
+    (now.getUTCHours() === targetTime.getUTCHours() &&
+      now.getUTCMinutes() >= targetTime.getUTCMinutes())
+  ) {
+    // If it's after the target time, add one day to the target time
+    targetTime.setUTCDate(targetTime.getUTCDate() + 1);
   }
+
+  // Calculate the time difference between the current time and the target time
+  let timeDifference = targetTime - now;
+
+  // Set a timeout to execute the callback function at the specified time
+  setTimeout(() => {
+    // Call your function here
+    callback();
+    console.log("Function executed!");
+
+    // Schedule the next execution for the same time tomorrow
+    MessageSender(callback);
+  }, timeDifference);
 }
